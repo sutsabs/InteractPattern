@@ -3,11 +3,16 @@ title: "Study of Interaction Patterns in Primary School Children Network"
 author: "utsab"
 date: "May 25,2020"
 output: html_document
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 ---
 
 ```{r}
 library(knitr)
-setwd("~/Github Project R/interaction")
+setwd("~/Github Project R/InteractPattern")
 read_chunk("proj_data.R")
 knitr::opts_chunk$set(echo = TRUE)
 ```
