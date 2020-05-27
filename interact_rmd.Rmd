@@ -123,89 +123,35 @@ The nodes and label size is sized by the eigenvector centrality measure. We agai
 The graph above shows the top three highest degree nodes. These are nodes 1697, 1890 and 1688. They are from Grades 1B and 2B. They have weighted degree of 23 and 22. The color of the nodes are based on the male and female gender and the red node is the highest degree node.
 
 The students from smaller grades have higher degree interaction and are more influencing. As the kids get older they seem to have smaller friend circle and less interactions between them.
+<br>
+<br>
+![](images/Rplot03.jpeg)
+<br>
+CUP and QAP tests further show both gender and grade display assortative patterns that suggests these attributes were not mere products of random association. While, gender and grade both exhibit high assortative behaviour with strong confidence with p-values of 0.83 and 0.93, students of same grade are likely to associate than students of same gender. In the figure above, the assortativity by gender is scaled higher than all the randomly generated networks. Furthermore, the assortativity of the network is confirmed by QAP test which rearranges the nodes to check if the assortativity of the nodes were random rather than generating random networks like in CUG tests. The CUG test validats the assortativity of the network with high confidence of 93% and 82% for grade and gender proving that the assortativity for grade is higher than gender in this network.
 
+## Models
 
-### Network properties
-```{r C10}
-```
-### Degree Boxplot by Grade 
-```{r C11}
-```
-### Giant Components
-```{r C12}
-```
-### Centrality Measures Corr Plot
-```{r C13}
-```
-### Betweeness and Closeness Distributon
-```{r C14}
-```
-### ERGM Models
-```{r C15}
-```
+Exponential Random Graph Models is used to study the interaction behaviors in the network. In the ERGM, we can experiment with various parameters to better understand the network. While we have seen that both grade and gender determine the probability of children interaction, the ERGM model is effective in showing the network behavior with high confidence. The final model for Day 1 proved to be much better in terms of Statistical P-value and MCM diagnostics. Even introducing high burn in computation and lowering the intervals and improving on the goodness of fit the Day 2 model did not perform well. Final model for day 1 takes gender mixes and grade matches into account as well as several degrees. All the parameters have low p-value which means they are statistically significant and the AIC and BIC criteria are low compared to other models.
+<br>
+<br>
+![](images/gof.png)
+<br>
 
-### Model 1 for Day 1
-simple model
-no mcmc stored
-```{r C16}
-```
-### Model 2
-added Age difference and MCMC burnin
+![](images/ac.png)
+<br>
 
-```{r C17}
-```
-### Model 3
-added Degree 1
-```{r C18}
-```
-### Model 4
-updated degree(2:4) based on GOF from Model 3 and added gwesp
-```{r C19}
-```
-### Model 6
-added Degree 9, nodematch for Grade and increased burnin computation
-This is much better model.
-MCMC statistics show some autocorrelation but the joint pvalue is better.
-```{r C21}
-```
+The goodness of fit diagnostics shows that the parameters all perform well with observed network denoted by the thicker line that fall within the simulated network quantiles. The degree distribution also follows the general path of the observed network. It is seen that degree 5 and degree 6 fall outside the simulated network but they do ascend like the observed network. When trying to introduce the degree 5 and degree 6 parameters to the ERGM model, AIC increased and the p-values for the statistical significance were not available.    The sample statistic showed auto-correlation with high value which is not good showing the simulated networks had correlation, the individual and joint p-value was high which tells that the model performed well. 
+<br>
+<br>
+<center>![](images/condprob.png)</center>
+<br>
 
-### Model 1 for Day 2
-Simple model to begin with
-```{r C22}
-```
-### Model 2 and 3
+<em>Using the model parameter coefficients, the conditional probability of specific type of edges being created can be determined.</em>
 
-added age difference and nodemix for gender
-```{r C23}
-```
+## Conclusion
 
-### Model 4
-added Nodematch for Grade and Degrees based on GOF and also increased computational power
-```{r C24}
-```
-### Model 5
-AIC and BIC are still not looking good. P-values are not significant. GOF is not performing well
-```{r C25}
-```
-### Model 6
-MCMC statistics have high correlations, and joint p-value is also 0.
-```{r C26}
-```
-### Model 7
-Still the model does not perform well with updated degree
-```{r C27}
-```
-### CUG test 
-High Assortativity on both Grade and Gender attributes.
-The Grade has higher assortativity so the assortativity is higher than random generated graphs.
-```{r C28}
-```
-### QAP test
-Assortativity test passes for QAP test also. High Assotativity for Grade than Gender. The nodes were not randomly assortative.
-```{r C29}
-```
+The model strongly supports our analysis of homophile behavior in students interacting between same grade student. Further, there is inclination to interact between to same gender rather than opposite sex between these students. The children do not have the same mentality and relation towards the opposite sex as adults, so they would probably behave differently than an adult would. The analysis on the network data provides important insights into child interaction behaviors. Through the contact counts, degree distribution, modularity community detection, QAC and CUP tests, network visualization, and ERGM modelling we can see that children show homophilic behavior which means they are more likely to interacts with someone like themselves be it the grade, age or gender. In cases of disease outbreak in a school environment this information can be of great importance in managing and controlling the disease from spreading further.  If there were more attributes available such as race, nationality, height etc. maybe we could build a better model and have more interesting findings.
 
-### Conditional Probability For Grade Match, Male-Male, Female-Female, Male-Female Edges forming
-Highest probability for Same grade nodes to form an edge
-```{r C30}
-```
+For details on <a href = "https://sutsabs.github.io/InteractPattern/interactcode.html">data exploration and modelling.</a>
+<br>
+PDF version of the <a href = "https://sutsabs.github.io/InteractPattern/pdf.html">report</a>
