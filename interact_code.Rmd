@@ -1,0 +1,138 @@
+---
+title: "Study of Interaction Patterns in Primary School Children Network"
+author: "Utsab Shrestha"
+date: "May 25,2020"
+output: html_document
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'interactcode.html'))})
+---
+```{r global_options, include = FALSE}
+library(knitr)
+setwd("~/Github Project R/InteractPattern")
+read_chunk("proj_data.R")
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE,message = FALSE, fig.align="center")
+```
+## Steps to setup data
+  
+### Step 1: Load the data in gephi
+The files were in GEXF format. I loaded the files in gephi and explored different layouts to visualize the network data. 
+
+```{r C1}
+```
+### Step 3: Export the node and edge csv file from Gephi
+Since I could not load the GEXF file in R, I had to export the edge and node files as CSV file from gephi and read the table in R and write as a graph file.
+
+
+```{r C2}
+```
+### Step 3: Convert edge and node data into igraph
+
+```{r C3}
+```
+
+### Step 4: Summary
+
+```{r C4}
+```
+```{r C5}
+```
+### Degree Distribution by Grade and Gender
+
+```{r C6}
+```
+### Heatmap of interactions by Grade
+```{r C7}
+```
+### Data pre-processing
+```{r C8}
+```
+### Degree Distribution Histogram
+```{r C9}
+```
+### Network properties
+```{r C10}
+```
+### Degree Boxplot by Grade 
+```{r C11}
+```
+### Giant Components
+```{r C12}
+```
+### Centrality Measures Corr Plot
+```{r C13}
+```
+### Betweeness and Closeness Distributon
+```{r C14}
+```
+### ERGM Models
+```{r C15}
+```
+
+### Model 1 for Day 1
+simple model
+no mcmc stored
+```{r C16}
+```
+### Model 2
+added Age difference and MCMC burnin
+
+```{r C17}
+```
+### Model 3
+added Degree 1
+```{r C18}
+```
+### Model 4
+updated degree(2:4) based on GOF from Model 3 and added gwesp
+```{r C19}
+```
+### Model 6
+added Degree 9, nodematch for Grade and increased burnin computation
+This is much better model.
+MCMC statistics show some autocorrelation but the joint pvalue is better.
+```{r C21}
+```
+
+### Model 1 for Day 2
+Simple model to begin with
+```{r C22}
+```
+### Model 2 and 3
+
+added age difference and nodemix for gender
+```{r C23}
+```
+
+### Model 4
+added Nodematch for Grade and Degrees based on GOF and also increased computational power
+```{r C24}
+```
+### Model 5
+AIC and BIC are still not looking good. P-values are not significant. GOF is not performing well
+```{r C25}
+```
+### Model 6
+MCMC statistics have high correlations, and joint p-value is also 0.
+```{r C26}
+```
+### Model 7
+Still the model does not perform well with updated degree
+```{r C27}
+```
+### CUG test 
+High Assortativity on both Grade and Gender attributes.
+The Grade has higher assortativity so the assortativity is higher than random generated graphs.
+```{r C28}
+```
+### QAP test
+Assortativity test passes for QAP test also. High Assotativity for Grade than Gender. The nodes were not randomly assortative.
+```{r C29}
+```
+
+### Conditional Probability For Grade Match, Male-Male, Female-Female, Male-Female Edges forming
+Highest probability for Same grade nodes to form an edge
+```{r C30}
+```
