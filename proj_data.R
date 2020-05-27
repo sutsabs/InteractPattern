@@ -30,10 +30,10 @@ nodes_day2 <- read.csv("nodelist-1.csv", stringsAsFactors=F)
 day1 <- graph.data.frame(links_day1, vertices=nodes_day1, directed=F)
 day2 <- graph.data.frame(links_day2, vertices=nodes_day2, directed=F)
 # ---- C4 ----
-summary(day1)
-summary(day2)
-summary(E(day1)$Weight)
-summary(E(day2)$Weight)
+#summary(day1)
+#summary(day2)
+#summary(E(day1)$Weight)
+#summary(E(day2)$Weight)
 # ---- C5 ----
 degr <- read.csv("grddeg.csv") #degree by grade table
 degr$Day <- as.factor(degr$Day)
@@ -41,16 +41,17 @@ degr$Gender <- as.factor(degr$Gender)
 # ---- C6 ----
 g <- ggplot(degr, aes(x=Label, y=Degree,fill=Day ))
 g <- g + geom_boxplot(outlier.color = 'red')
-g <- g + xlab("Grade")+ylab("Degree") +ggtitle("Degree distribution by Grade")
+g <- g + xlab("Grade")+ylab("Degree") 
 print(g)
+# ---- C6.1 ----
 g <- ggplot(degr, aes(x=Gender, y=Degree,fill=Day ))
 g <- g + geom_boxplot(outlier.color = 'red')
-g <- g + xlab("Gender")+ylab("Degree") +
-  ggtitle("Degree distribution by Gender")+ theme_bw()
+g <- g + xlab("Gender")+ylab("Degree") + theme_bw()
 print(g)
+# ---- C6.2 ----
 ggplot(degr, aes(y=Degree, x=Label)) +
   geom_col(aes(fill = Day), width =0.4,position = "dodge") +
-  xlab("Grades")+ylab("Number of Contacts") +ggtitle("Total Interactions by Different Grade Students")
+  xlab("Grades")+ylab("Number of Contacts")
 
 # ---- C7 ----
 # distribution of number of contacts by grades heatmap
@@ -137,7 +138,7 @@ g <- ggplot(data=day2.deg, aes(x=Degree))
 g <- g + geom_histogram(breaks=seq(0,25, by=1), col="black",aes(fill=Sex)) 
 g <- g + scale_fill_manual("Grade", values = c("pink","darkslateblue")) + facet_wrap(~Sex,ncol = 1)
 g <- g + ggtitle ("Distribution of Weighted Degree by Gender") + theme_bw()
-print(g)
+
 
 # ---- C10 ----
 ## connected
