@@ -1,6 +1,6 @@
 ---
 title: "Study of Interaction Patterns in Primary School Children Network"
-author: "utsab"
+author: "Utsab Shrestha"
 date: "May 25,2020"
 output: html_document
 knit: (function(input_file, encoding) {
@@ -9,17 +9,42 @@ knit: (function(input_file, encoding) {
  encoding=encoding,
  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 ---
-
-```{r}
+```{r global_options, include = FALSE}
 library(knitr)
 setwd("~/Github Project R/InteractPattern")
 read_chunk("proj_data.R")
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE,message = FALSE, fig.align="center")
 ```
-## Steps to setup data
+##  Introduction
+<p style="font-size:20px">
+Human interactions and human behaviors has been a fascinating and challenging subject of study in recent times. Social network companies, consumer markets, medical industries have been trying to study human behavior to predict the consumer needs, recommend goods, optimize marketing strategies, or in case of medical industry diagnose and study disease patterns. Child psychology and child interaction behavior is very different from an adult behavior. Study of children interaction pattern is very important to understand and improve the development of children. These studies have been used to understand the development in children as well as spreading of highly communicable disease like influenza, hepatitis and measles. Children are prone to these diseases and the pattern study of interaction of children helps to find the propagation and evaluation of the control measures of these diseases. Through this study, we want to find how age, gender, grade affect the interaction pattern in children.
+</p>
+## Data
+
+Data for this project was obtained from the Socio patterns website (sociopatterns.org). The dataset had two networks, one for each day, of face-to-face interaction between students and teachers. These interactions were collected from a French school in 2009 using radio frequency identification devices that recognizes an interaction by proximity sensors. The students involved in the data are ages 6 to 12 attending grades 1 to 5. There were 232 children and 10 teachers who were involved in 77,602 contacts amongst each other in course of two days. There were 10 classes, grades 1 to 5 with section A and B, and in each grade, there were around 25 students. In average, each child had around 165 interactions and spent an average of 176 minutes in interaction per day. The gender and grade were provided for the children and also the count and duration of interactions were provided. For a contact to occur between two individuals, they must be in certain proximity for at least 20 seconds. A packet of information is sent after every 20 second. A contact is broken once they are further than the defined proximity and if they come in contact again new contact is added and time is added to previous duration.
+
+## Analysis
+
+Analysis for this project was focused on finding patterns of interaction by grades and gender to study if the students show homophile behavior. Do children of opposite sex interact as much as same sex? Which grades/age children are more social? How popular or the most popular student? In following analysis we will be trying to answer these quesitons.
+
+
+### Data Analysis Approach
   
-### Step 1: Load the data in gephi
-The files were in GEXF format. I loaded the files in gephi and explored different layouts to visualize the network data. 
+### Step 1: Loaded the data in gephi
+The files from the data source website were in GEXF gephi format, one file for each day. I loaded the files in gephi and explored different layouts to visualize the network data. 
+
+![](images/day 1 node by degree.png)
+<center><em>Degree Distribution for Day 1</em></center>
+
+
+![](images/node size by degree day2 a.png)
+<center><em>Degree Distribution for Day 2</em></center>
+
+Using the gephi community detection, there were 8 communities detected for both days with modularity of 0.75. The algorithm performs well on separating communities by grades. Same grade students form a community. This measure shows how well the network can decomposed into modular communities. Grades 2A and 2B are in same community, grade 5A and grade 5B are in same communities while Grades 1A and 1B, 3A and 3B, and 4A and 4B form separate communities. This also shows sign of homophile behavior since there is high interaction between same grade students which resulted in same grade students being in same community.
+
+![](images/modularity.png)
+<center><em>Communities detected by Gephi Modularity Algorithm</em></center>
+
 
 ```{r C1}
 ```
