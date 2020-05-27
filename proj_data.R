@@ -11,14 +11,13 @@ library(network)
 library(latticeExtra)
 library(intergraph)
 library(sand)
-
-getwd()
+library(png)
+#getwd()
 
 source('lab2-utils.R')
 source('invlogit.R')
 source('mycugtest.R')
 source('myqaptest.R')
-
 
 # ---- C2 ----
 #import nodes and edges for day 1 and day 2
